@@ -1,14 +1,8 @@
+-- Extend LazyVim's which-key config; LazyVim manages init/event/timeoutlen
 return {
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-        }
+    "folke/which-key.nvim",
+    opts = {
+        -- add custom group labels here, e.g.:
+        -- spec = { { "<leader>d", group = "debug" } },
     },
 }

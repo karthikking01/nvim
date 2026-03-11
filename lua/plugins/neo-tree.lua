@@ -1,21 +1,31 @@
+-- Extend LazyVim's neo-tree config via opts
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"MunifTanjim/nui.nvim", -- Fixed typo
-		"nvim-tree/nvim-web-devicons",
-	},
 	opts = {
-		bind_to_cwd = true,
 		sources = { "filesystem", "buffers", "git_status" },
 		window = { width = 30 },
-		follow_current_file = { enabled = true	},
+		filesystem = {
+			bind_to_cwd = true,
+			follow_current_file = { enabled = true },
+		},
 	},
-	config = function(_, opts)
-		require("neo-tree").setup(opts)
-		-- Only open neo-tree automatically when a directory is given as argument
+	init = function()
+		-- Open neo-tree rooted at the passed directory when starting nvim with a directory arg
 		if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
-			vim.cmd("Neotree toggle")
+			local dir = vim.fn.fnamemodify(vim.fn.argv(0), ":p")
+			vim.schedule(function()
+				vim.cmd.cd(dir)
+				local ok, command = pcall(require, "neo-tree.command")
+				if ok then
+					command.execute({
+						source = "filesystem",
+						action = "show",
+						dir = dir,
+						position = "left",
+						reveal = true,
+					})
+				end
+			end)
 		end
 	end,
 }

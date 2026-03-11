@@ -1,43 +1,37 @@
 -- ╭─────────────────────────────────────╮
 -- │           General / Global          │
 -- ╰─────────────────────────────────────╯
-vim.keymap.set("n", "<leader>w", ":w<CR>")
+-- NOTE: <leader>w is LazyVim's window-group prefix; use <C-s> to save instead.
+-- LazyVim already maps <C-s> to save; the line below is kept as a personal alias.
+vim.keymap.set("n", "<leader>W", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<A-k>", ":t.<CR>", { desc = "Duplicate line down" })
+
 -- ╭─────────────────────────────────────╮
 -- │                LSP                  │
 -- ╰─────────────────────────────────────╯
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local opts = { buffer = args.buf }
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "e", vim.diagnostic.open_float, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-    vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, opts)
-  end,
-})
+-- LazyVim already maps: K (hover), gd (definition), gr (references),
+-- <leader>cr (rename), <leader>ca (code action), <leader>cd (line diagnostics),
+-- [d / ]d (prev/next diagnostic), <leader>cf (format).
+-- Only add keymaps here that LazyVim does NOT provide.
 
 -- ╭─────────────────────────────────────╮
 -- │           Telescope                 │
 -- ╰─────────────────────────────────────╯
-local telescope = require('utils.telescope')
-vim.keymap.set('n', '<leader>ff', telescope.builtin('find_files'), { desc = 'Telescope files' })
-vim.keymap.set('n', '<leader>fg', telescope.builtin('live_grep'), { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>ag', telescope.extension('ast_grep', 'ast_grep'), { desc = 'Telescope ast-grep' })
+-- LazyVim already maps: <leader>ff (find_files), <leader>fg (live_grep),
+-- <leader>/ (grep), <leader><space> (find_files root).
+-- Only add the custom ast-grep picker here.
+local telescope = require("utils.telescope")
+vim.keymap.set("n", "<leader>ag", telescope.extension("ast_grep", "ast_grep"), { desc = "Telescope ast-grep" })
 
 -- ╭─────────────────────────────────────╮
 -- │           Neo-tree / Oil            │
 -- ╰─────────────────────────────────────╯
-vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>')
--- etc.
+-- LazyVim maps <leader>e / <leader>E for neo-tree.
+-- <C-n> is kept as an additional personal shortcut.
+vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
+
 -- ╭─────────────────────────────────────╮
 -- │           Debugger                  │
 -- ╰─────────────────────────────────────╯
-vim.keymap.set('n', '<leader>db', function() dap.toggle_breakpoint() end, { desc = 'Toggle breakpoint' })
-vim.keymap.set('n', '<leader>dc', function() dap.continue() end, { desc = 'Continue' })
-vim.keymap.set('n', '<leader>dc', function() dap.continue() end, { desc = 'Continue' })
+-- LazyVim already maps all <leader>d* DAP keymaps when nvim-dap is loaded.
+-- Add only extras that LazyVim does not provide.
