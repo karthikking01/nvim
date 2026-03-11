@@ -1,4 +1,6 @@
 return{
   "github/copilot.vim",
-  vim.cmd("Copilot disable")
+  config = function ()
+    vim.b.copilot_enabled = false
+  end
 }
