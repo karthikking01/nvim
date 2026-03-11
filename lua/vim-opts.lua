@@ -1,14 +1,6 @@
---edit visual TAB spacing
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
-vim.cmd("set number")
-vim.g.mapleader = " "
+-- LazyVim already provides: expandtab, tabstop=2, shiftwidth=2, number,
+-- relativenumber, signcolumn, clipboard, foldcolumn.
+-- Only set options that differ from or extend LazyVim defaults here.
 
---padding
-vim.opt.signcolumn = "yes:1"
-vim.opt.foldcolumn = "1"
-vim.opt.winbar = " "
 vim.opt.wildignorecase = true
-vim.opt.clipboard = "unnamedplus"
+vim.opt.signcolumn = "yes:1" -- extra column padding beyond LazyVim default

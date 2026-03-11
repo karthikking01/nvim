@@ -1,17 +1,16 @@
 return {
   {
     "ribru17/bamboo.nvim",
-    lazy = false,
     priority = 1000,
-    config = function()
-      require("bamboo").setup({})
-      require("bamboo").load()
-    end,
+    opts = {},
   },
   {
-    "LazyVim/LazyVim",
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
     opts = {
-      colorscheme = "bamboo",
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      transparent_background = true,
     },
   },
 }

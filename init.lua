@@ -1,17 +1,11 @@
--- check if lazy is installed else install it
+-- Must be set before lazy.nvim loads (LazyVim requirement)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+-- Disable netrw so neo-tree can fully handle directory opens
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 require("vim-opts")
-require("keybinds")
-require("lazy").setup("plugins")
+require("keymaps")
+require("config.lazy")

@@ -1,8 +1,7 @@
-return
-{
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons'},
-    config = function()
-      require('lualine').setup({ options = { theme = 'catppuccin'}})
-    end
+-- Let LazyVim manage the lualine theme (defaults to "auto", tracks active colorscheme)
+return {
+  "nvim-lualine/lualine.nvim",
+  opts = {
+    options = { theme = "auto" },
+  },
 }

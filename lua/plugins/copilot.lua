@@ -1,6 +1,6 @@
-return{
+return {
   "github/copilot.vim",
-  config = function ()
-    vim.b.copilot_enabled = false
+  config = function()
+    vim.g.copilot_enabled = false
   end
 }
