@@ -1,6 +1,17 @@
 -- LazyVim manages mason, mason-lspconfig, and nvim-lspconfig.
 -- Extend them here using opts instead of re-calling setup().
 return {
+	-- Ensure external LSP binaries are installed via Mason registry package names
+	{
+		"williamboman/mason.nvim",
+		opts = function(_, opts)
+			opts.ensure_installed = opts.ensure_installed or {}
+			if not vim.tbl_contains(opts.ensure_installed, "emmet-language-server") then
+				table.insert(opts.ensure_installed, "emmet-language-server")
+			end
+		end,
+	},
+
 	-- Let mason-lspconfig auto-install servers declared in nvim-lspconfig opts.servers
 	{
 		"mason-org/mason-lspconfig.nvim",
@@ -9,6 +20,7 @@ return {
 				"lua_ls",
 				"html",
 				"cssls",
+				"emmet_language_server",
 				"ts_ls",
 				"eslint",
 				"clangd",
@@ -44,6 +56,9 @@ return {
 				},
 				html = {},
 				cssls = {},
+				emmet_language_server = {
+					filetypes = { "html", "css" },
+				},
 				ts_ls = {},
 				eslint = {},
 				clangd = {},

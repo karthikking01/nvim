@@ -20,7 +20,7 @@ return {
         end,
     },
     {
-        "mason-org/mason-nvim-lint",
+		"rshkarin/mason-nvim-lint",
         dependencies = { "mason-org/mason.nvim", "mfussenegger/nvim-lint" },
         opts = function(_, opts)
             -- Extend LazyVim's ensure_installed rather than replacing it.
