@@ -3,7 +3,7 @@
 return {
 	-- Ensure external LSP binaries are installed via Mason registry package names
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		opts = function(_, opts)
 			opts.ensure_installed = opts.ensure_installed or {}
 			if not vim.tbl_contains(opts.ensure_installed, "emmet-language-server") then
@@ -20,6 +20,7 @@ return {
 				"lua_ls",
 				"html",
 				"cssls",
+				"pyright",
 				"emmet_language_server",
 				"ts_ls",
 				"eslint",
@@ -54,6 +55,7 @@ return {
 						},
 					},
 				},
+				pyright = {},
 				html = {},
 				cssls = {},
 				emmet_language_server = {
@@ -67,9 +69,19 @@ return {
 				ast_grep = {
 					cmd = { "ast_grep", "lsp" },
 					filetypes = {
-						"c", "cpp", "rust", "go", "java", "python",
-						"javascript", "typescript", "html", "css",
-						"kotlin", "dart", "lua",
+						"c",
+						"cpp",
+						"rust",
+						"go",
+						"java",
+						"python",
+						"javascript",
+						"typescript",
+						"html",
+						"css",
+						"kotlin",
+						"dart",
+						"lua",
 					},
 					root_dir = function(fname)
 						return require("lspconfig.util").root_pattern("sgconfig.yaml", "sgconfig.yml")(fname)

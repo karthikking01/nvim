@@ -17,12 +17,13 @@ vim.keymap.set("n", "<A-k>", ":t.<CR>", { desc = "Duplicate line down" })
 -- ╭─────────────────────────────────────╮
 -- │           Telescope                 │
 -- ╰─────────────────────────────────────╯
--- LazyVim already maps: <leader>ff (find_files), <leader>fg (live_grep),
--- <leader>/ (grep), <leader><space> (find_files root).
+-- LazyVim already maps core Telescope finders.
 -- Only add the custom ast-grep picker here.
+vim.keymap.set("n", "<leader>sg", function()
+    require("telescope.builtin").live_grep()
+end, { desc = "Search text in files" })
 local telescope = require("utils.telescope")
 vim.keymap.set("n", "<leader>ag", telescope.extension("ast_grep", "ast_grep"), { desc = "Telescope ast-grep" })
-
 -- ╭─────────────────────────────────────╮
 -- │           Neo-tree / Oil            │
 -- ╰─────────────────────────────────────╯
