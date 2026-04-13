@@ -5,6 +5,7 @@
 -- LazyVim already maps <C-s> to save; the line below is kept as a personal alias.
 vim.keymap.set("n", "<leader>W", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<A-k>", ":t.<CR>", { desc = "Duplicate line down" })
+vim.keymap.set("n", "<leader>xr", ":%s///gI<Left><Left><Left>", { desc = "Find and replace in file" })
 
 -- ╭─────────────────────────────────────╮
 -- │                LSP                  │
