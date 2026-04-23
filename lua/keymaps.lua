@@ -32,8 +32,3 @@ vim.keymap.set("n", "<leader>ag", telescope.extension("ast_grep", "ast_grep"), {
 -- <C-n> is kept as an additional personal shortcut.
 vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
 
--- ╭─────────────────────────────────────╮
--- │           Debugger                  │
--- ╰─────────────────────────────────────╯
--- LazyVim already maps all <leader>d* DAP keymaps when nvim-dap is loaded.
--- Add only extras that LazyVim does not provide.
